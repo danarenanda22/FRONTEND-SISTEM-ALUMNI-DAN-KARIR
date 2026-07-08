@@ -1,0 +1,12 @@
+.card{
+    border:none;
+    border-radius:12px;
+}
+
+.card-header{
+    background:#fff;
+}
+
+.btn{
+    border-radius:10px;
+}

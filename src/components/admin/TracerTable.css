@@ -1,0 +1,40 @@
+.table-card{
+    background:white;
+    border-radius:18px;
+    padding:25px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.table-header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:20px;
+
+}
+
+.search-box{
+
+width:300px;
+
+margin-bottom:20px;
+
+}
+
+.table tbody tr{
+
+transition:.3s;
+
+}
+
+.table tbody tr:hover{
+
+background:#f8fafc;
+
+transform:translateY(-2px);
+
+}

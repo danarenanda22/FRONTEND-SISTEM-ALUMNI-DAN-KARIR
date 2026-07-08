@@ -1,0 +1,33 @@
+.about-section{
+    padding:100px 0;
+    background:#f8fafc;
+}
+
+.about-card{
+    background:white;
+    padding:40px 30px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    transition:.3s;
+    height:100%;
+}
+
+.about-card:hover{
+    transform:translateY(-10px);
+}
+
+.about-icon{
+    font-size:55px;
+    color:#2563eb;
+    margin-bottom:20px;
+}
+
+.about-card h4{
+    font-weight:700;
+    margin-bottom:15px;
+}
+
+.about-card p{
+    color:#6b7280;
+}

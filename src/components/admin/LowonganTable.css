@@ -1,0 +1,17 @@
+.card{
+    border:none;
+    border-radius:15px;
+}
+
+.card-header{
+    background:#fff;
+    border-bottom:1px solid #eee;
+}
+
+.table th{
+    background:#f8f9fa;
+}
+
+.btn{
+    border-radius:10px;
+}

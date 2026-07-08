@@ -1,0 +1,12 @@
+.card{
+    border:none;
+    border-radius:12px;
+}
+
+.card-header{
+    background:#fff;
+}
+
+.table th{
+    vertical-align:middle;
+}

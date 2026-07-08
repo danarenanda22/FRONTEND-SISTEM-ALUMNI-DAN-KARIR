@@ -1,0 +1,31 @@
+.job-section{
+    padding:100px 0;
+    background:#f8fafc;
+}
+
+.job-card{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    transition:.3s;
+    height:100%;
+}
+
+.job-card:hover{
+    transform:translateY(-8px);
+}
+
+.job-card h5{
+    color:#2563eb;
+    font-weight:700;
+}
+
+.job-card h3{
+    margin:15px 0;
+    font-size:24px;
+}
+
+.job-card p{
+    color:#6b7280;
+}
