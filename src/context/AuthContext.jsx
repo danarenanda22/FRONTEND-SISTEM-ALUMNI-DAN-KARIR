@@ -1,78 +1,50 @@
 import { createContext, useState } from "react";
+import { loginApi, logoutApi } from "../api/auth";
 
-export const AuthContext =
-  createContext();
+export const AuthContext = createContext();
 
 function AuthProvider({ children }) {
-
   const [user, setUser] = useState(() => {
-
-    const savedUser =
-      localStorage.getItem("user");
-
-    return savedUser
-      ? JSON.parse(savedUser)
-      : null;
+    const savedUser = localStorage.getItem("user");
+    return savedUser ? JSON.parse(savedUser) : null;
   });
 
-  // LOGIN
+  const login = async (email, password) => {
+    try {
+      const response = await loginApi({
+        email,
+        password,
+      });
 
-  const login = (email, password) => {
-
-    // ADMIN
-
-    if (
-      email === "admin@gmail.com" &&
-      password === "admin123"
-    ) {
-
-      const adminUser = {
-        name: "Administrator",
-        role: "admin",
+      const user = {
+        ...response.data.data,
+        role: response.data.role,
       };
 
-      setUser(adminUser);
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("user", JSON.stringify(user));
 
-      localStorage.setItem(
-        "user",
-        JSON.stringify(adminUser)
-      );
+      setUser(user);
 
-      return adminUser;
+      return user;
+    } catch (error) {
+      // BARIS INI DITAMBAHKAN UNTUK MENAMPILKAN ERROR ASLI DI CONSOLE BROWSER
+      console.error("Detail Error Login:", error.response ? error.response.data : error.message);
+      return null;
     }
-
-    // ALUMNI
-
-    if (
-      email === "alumni@gmail.com" &&
-      password === "alumni123"
-    ) {
-
-      const alumniUser = {
-        name: "Budi Santoso",
-        role: "alumni",
-      };
-
-      setUser(alumniUser);
-
-      localStorage.setItem(
-        "user",
-        JSON.stringify(alumniUser)
-      );
-
-      return alumniUser;
-    }
-
-    return null;
   };
 
-  // LOGOUT
+  const logout = async () => {
+    try {
+      await logoutApi();
+    } catch (error) {
+      console.error("Error Logout:", error);
+    }
 
-  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
 
     setUser(null);
-
-    localStorage.removeItem("user");
   };
 
   return (

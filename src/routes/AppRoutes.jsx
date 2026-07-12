@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // ================= PUBLIC =================
+import PublicLayout from "../layouts/PublicLayout";
 import Home from "../pages/Public/Home";
 import Tentang from "../pages/Public/Tentang";
 import Informasi from "../pages/Public/Informasi";
@@ -38,11 +39,15 @@ function AppRoutes() {
 
         {/* ================= PUBLIC ================= */}
 
-        <Route path="/" element={<Home />} />
-        <Route path="/tentang" element={<Tentang />} />
-        <Route path="/informasi" element={<Informasi />} />
-        <Route path="/lowongan" element={<Lowongan />} />
-        <Route path="/kontak" element={<Kontak />} />
+        <Route element={<PublicLayout />}>
+
+          <Route path="/" element={<Home />} />
+          <Route path="/tentang" element={<Tentang />} />
+          <Route path="/informasi" element={<Informasi />} />
+          <Route path="/lowongan" element={<Lowongan />} />
+          <Route path="/kontak" element={<Kontak />} />
+
+        </Route>
 
         {/* ================= LOGIN ================= */}
 
@@ -125,49 +130,49 @@ function AppRoutes() {
         />
 
         <Route
-  path="/alumni/profil"
-  element={
-    <AlumniLayout>
-      <ProfilAlumni />
-    </AlumniLayout>
-  }
-/>
+          path="/alumni/profil"
+          element={
+            <AlumniLayout>
+              <ProfilAlumni />
+            </AlumniLayout>
+          }
+        />
 
-<Route
-  path="/alumni/tracer-study"
-  element={
-    <AlumniLayout>
-      <TracerStudyAlumni />
-    </AlumniLayout>
-  }
-/>
+        <Route
+          path="/alumni/tracer-study"
+          element={
+            <AlumniLayout>
+              <TracerStudyAlumni />
+            </AlumniLayout>
+          }
+        />
 
-<Route
-  path="/alumni/lowongan"
-  element={
-    <AlumniLayout>
-      <LowonganAlumni />
-    </AlumniLayout>
-  }
-/>
+        <Route
+          path="/alumni/lowongan"
+          element={
+            <AlumniLayout>
+              <LowonganAlumni />
+            </AlumniLayout>
+          }
+        />
 
-<Route
-  path="/alumni/informasi"
-  element={
-    <AlumniLayout>
-      <InformasiAlumni />
-    </AlumniLayout>
-  }
-/>
+        <Route
+          path="/alumni/informasi"
+          element={
+            <AlumniLayout>
+              <InformasiAlumni />
+            </AlumniLayout>
+          }
+        />
 
-<Route
-  path="/alumni/ganti-password"
-  element={
-    <AlumniLayout>
-      <GantiPassword />
-    </AlumniLayout>
-  }
-/>
+        <Route
+          path="/alumni/ganti-password"
+          element={
+            <AlumniLayout>
+              <GantiPassword />
+            </AlumniLayout>
+          }
+        />
 
       </Routes>
     </BrowserRouter>
