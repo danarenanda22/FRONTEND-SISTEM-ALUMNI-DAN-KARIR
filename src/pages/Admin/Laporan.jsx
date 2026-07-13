@@ -1,28 +1,39 @@
+import { useEffect, useState } from "react";
+import {
+  FaUsers,
+  FaClipboardCheck,
+  FaBriefcase,
+  FaNewspaper,
+  FaFilePdf,
+  FaFileExcel,
+} from "react-icons/fa";
+
 function Laporan() {
 
-  // AMBIL DATA LOCAL STORAGE
+  const [alumni, setAlumni] = useState([]);
+  const [tracer, setTracer] = useState([]);
+  const [lowongan, setLowongan] = useState([]);
+  const [informasi, setInformasi] = useState([]);
 
-  const alumni =
-    JSON.parse(
-      localStorage.getItem("alumni")
-    ) || [];
+  useEffect(() => {
 
-  const lowongan =
-    JSON.parse(
-      localStorage.getItem("lowongan")
-    ) || [];
+    setAlumni(
+      JSON.parse(localStorage.getItem("alumni")) || []
+    );
 
-  const users =
-    JSON.parse(
-      localStorage.getItem("users")
-    ) || [];
+    setTracer(
+      JSON.parse(localStorage.getItem("tracer")) || []
+    );
 
-  const informasi =
-    JSON.parse(
-      localStorage.getItem("informasi")
-    ) || [];
+    setLowongan(
+      JSON.parse(localStorage.getItem("lowongan")) || []
+    );
 
-  // EXPORT DUMMY
+    setInformasi(
+      JSON.parse(localStorage.getItem("informasi")) || []
+    );
+
+  }, []);
 
   const exportPDF = () => {
     alert("Export PDF berhasil");
@@ -33,11 +44,10 @@ function Laporan() {
   };
 
   return (
-    <div className="container-fluid">
 
-      {/* HEADER */}
+    <div className="container-fluid py-4">
 
-      <div className="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+      <div className="d-flex justify-content-between align-items-center mb-4">
 
         <div>
 
@@ -46,221 +56,450 @@ function Laporan() {
           </h2>
 
           <p className="text-muted">
-            Statistik data SI-ALKAR
+            Statistik Sistem Informasi Alumni dan Karir
           </p>
 
         </div>
 
-        <div className="d-flex gap-2">
+        <div>
 
           <button
-            className="btn btn-danger"
+            className="btn btn-danger me-2"
             onClick={exportPDF}
           >
+
+            <FaFilePdf className="me-2"/>
+
             Export PDF
+
           </button>
 
           <button
             className="btn btn-success"
             onClick={exportExcel}
           >
+
+            <FaFileExcel className="me-2"/>
+
             Export Excel
+
           </button>
 
         </div>
 
       </div>
+      <div className="row mb-4">
 
-      {/* STATISTIK */}
+<div className="col-md-3">
 
-      <div className="row g-4 mb-4">
+<div className="card shadow-sm border-0">
 
-        <div className="col-lg-3 col-md-6">
+<div className="card-body text-center">
 
-          <div className="card border-0 shadow-sm h-100">
+<FaUsers size={35} className="text-primary"/>
 
-            <div className="card-body">
+<h5 className="mt-3">
 
-              <h6 className="text-muted">
-                Total Alumni
-              </h6>
+Total Alumni
 
-              <h2 className="fw-bold">
-                {alumni.length}
-              </h2>
+</h5>
 
-            </div>
+<h2>
 
-          </div>
+{alumni.length}
 
-        </div>
+</h2>
 
-        <div className="col-lg-3 col-md-6">
+</div>
 
-          <div className="card border-0 shadow-sm h-100">
+</div>
 
-            <div className="card-body">
+</div>
 
-              <h6 className="text-muted">
-                Total Lowongan
-              </h6>
+<div className="col-md-3">
 
-              <h2 className="fw-bold">
-                {lowongan.length}
-              </h2>
+<div className="card shadow-sm border-0">
 
-            </div>
+<div className="card-body text-center">
 
-          </div>
+<FaClipboardCheck
+size={35}
+className="text-success"
+/>
 
-        </div>
+<h5 className="mt-3">
 
-        <div className="col-lg-3 col-md-6">
+Tracer Study
 
-          <div className="card border-0 shadow-sm h-100">
+</h5>
 
-            <div className="card-body">
+<h2>
 
-              <h6 className="text-muted">
-                Total User
-              </h6>
+{tracer.length}
 
-              <h2 className="fw-bold">
-                {users.length}
-              </h2>
+</h2>
 
-            </div>
+</div>
 
-          </div>
+</div>
 
-        </div>
+</div>
 
-        <div className="col-lg-3 col-md-6">
+<div className="col-md-3">
 
-          <div className="card border-0 shadow-sm h-100">
+<div className="card shadow-sm border-0">
 
-            <div className="card-body">
+<div className="card-body text-center">
 
-              <h6 className="text-muted">
-                Total Informasi
-              </h6>
+<FaBriefcase
+size={35}
+className="text-warning"
+/>
 
-              <h2 className="fw-bold">
-                {informasi.length}
-              </h2>
+<h5 className="mt-3">
 
-            </div>
+Lowongan
 
-          </div>
+</h5>
 
-        </div>
+<h2>
 
-      </div>
+{lowongan.length}
 
-      {/* TABEL RINGKAS */}
+</h2>
 
-      <div className="row g-4">
+</div>
 
-        {/* ALUMNI */}
+</div>
 
-        <div className="col-lg-6">
+</div>
 
-          <div className="card border-0 shadow-sm">
+<div className="col-md-3">
 
-            <div className="card-header bg-white">
+<div className="card shadow-sm border-0">
 
-              <h5 className="mb-0">
-                Data Alumni
-              </h5>
+<div className="card-body text-center">
 
-            </div>
+<FaNewspaper
+size={35}
+className="text-danger"
+/>
 
-            <div className="card-body">
+<h5 className="mt-3">
 
-              <table className="table">
+Informasi
 
-                <thead>
+</h5>
 
-                  <tr>
-                    <th>Nama</th>
-                    <th>NIM</th>
-                  </tr>
+<h2>
 
-                </thead>
+{informasi.length}
 
-                <tbody>
+</h2>
 
-                  {alumni.slice(0, 5).map((item) => (
+</div>
 
-                    <tr key={item.id}>
-                      <td>{item.nama}</td>
-                      <td>{item.nim}</td>
-                    </tr>
+</div>
 
-                  ))}
+</div>
 
-                </tbody>
+</div>
+{/* ====================== DATA ALUMNI ====================== */}
 
-              </table>
+<div className="card shadow-sm border-0 mb-4">
 
-            </div>
+  <div className="card-header bg-primary text-white">
 
-          </div>
+    <h5 className="mb-0">
+      Data Alumni
+    </h5>
 
-        </div>
+  </div>
 
-        {/* LOWONGAN */}
+  <div className="card-body p-0">
 
-        <div className="col-lg-6">
+    <table className="table table-hover mb-0">
 
-          <div className="card border-0 shadow-sm">
+      <thead>
 
-            <div className="card-header bg-white">
+        <tr>
 
-              <h5 className="mb-0">
-                Data Lowongan
-              </h5>
+          <th>No</th>
 
-            </div>
+          <th>Nama</th>
 
-            <div className="card-body">
+          <th>NIM</th>
 
-              <table className="table">
+        </tr>
 
-                <thead>
+      </thead>
 
-                  <tr>
-                    <th>Perusahaan</th>
-                    <th>Posisi</th>
-                  </tr>
+      <tbody>
 
-                </thead>
+        {alumni.length > 0 ? (
 
-                <tbody>
+          alumni.map((item, index) => (
 
-                  {lowongan.slice(0, 5).map((item) => (
+            <tr key={index}>
 
-                    <tr key={item.id}>
-                      <td>{item.perusahaan}</td>
-                      <td>{item.posisi}</td>
-                    </tr>
+              <td>{index + 1}</td>
 
-                  ))}
+              <td>{item.nama}</td>
 
-                </tbody>
+              <td>{item.nim}</td>
 
-              </table>
+            </tr>
 
-            </div>
+          ))
 
-          </div>
+        ) : (
 
-        </div>
+          <tr>
 
-      </div>
+            <td colSpan="3" className="text-center">
 
+              Belum ada data alumni
+
+            </td>
+
+          </tr>
+
+        )}
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>
+
+
+{/* ====================== DATA TRACER ====================== */}
+
+<div className="card shadow-sm border-0 mb-4">
+
+  <div className="card-header bg-success text-white">
+
+    <h5 className="mb-0">
+
+      Data Tracer Study
+
+    </h5>
+
+  </div>
+
+  <div className="card-body p-0">
+
+    <table className="table table-hover mb-0">
+
+      <thead>
+
+        <tr>
+
+          <th>No</th>
+
+          <th>Nama</th>
+
+          <th>Status</th>
+
+          <th>Perusahaan</th>
+
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        {tracer.length > 0 ? (
+
+          tracer.map((item, index) => (
+
+            <tr key={index}>
+
+              <td>{index + 1}</td>
+
+              <td>{item.nama}</td>
+
+              <td>{item.status}</td>
+
+              <td>{item.perusahaan}</td>
+
+            </tr>
+
+          ))
+
+        ) : (
+
+          <tr>
+
+            <td colSpan="4" className="text-center">
+
+              Belum ada data tracer study
+
+            </td>
+
+          </tr>
+
+        )}
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>
+
+
+{/* ====================== DATA LOWONGAN ====================== */}
+
+<div className="card shadow-sm border-0 mb-4">
+
+  <div className="card-header bg-warning">
+
+    <h5 className="mb-0">
+
+      Data Lowongan
+
+    </h5>
+
+  </div>
+
+  <div className="card-body p-0">
+
+    <table className="table table-hover mb-0">
+
+      <thead>
+
+        <tr>
+
+          <th>No</th>
+
+          <th>Perusahaan</th>
+
+          <th>Posisi</th>
+
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        {lowongan.length > 0 ? (
+
+          lowongan.map((item, index) => (
+
+            <tr key={index}>
+
+              <td>{index + 1}</td>
+
+              <td>{item.perusahaan}</td>
+
+              <td>{item.posisi}</td>
+
+            </tr>
+
+          ))
+
+        ) : (
+
+          <tr>
+
+            <td colSpan="3" className="text-center">
+
+              Belum ada data lowongan
+
+            </td>
+
+          </tr>
+
+        )}
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>
+
+
+{/* ====================== DATA INFORMASI ====================== */}
+
+<div className="card shadow-sm border-0">
+
+  <div className="card-header bg-info text-white">
+
+    <h5 className="mb-0">
+
+      Data Informasi
+
+    </h5>
+
+  </div>
+
+  <div className="card-body p-0">
+
+    <table className="table table-hover mb-0">
+
+      <thead>
+
+        <tr>
+
+          <th>No</th>
+
+          <th>Judul</th>
+
+          <th>Kategori</th>
+
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        {informasi.length > 0 ? (
+
+          informasi.map((item, index) => (
+
+            <tr key={index}>
+
+              <td>{index + 1}</td>
+
+              <td>{item.judul}</td>
+
+              <td>{item.kategori}</td>
+
+            </tr>
+
+          ))
+
+        ) : (
+
+          <tr>
+
+            <td colSpan="3" className="text-center">
+
+              Belum ada data informasi
+
+            </td>
+
+          </tr>
+
+        )}
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>
     </div>
+
   );
+
 }
 
 export default Laporan;
